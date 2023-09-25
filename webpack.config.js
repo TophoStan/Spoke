@@ -68,7 +68,7 @@ function createHTTPSConfig() {
   }
 }
 
-const defaultHostName = "hubs.local";
+const defaultHostName = "localhost";
 const host = process.env.HOST_IP || defaultHostName;
 const port = process.env.HOST_PORT || 9090;
 const internalHostname = process.env.INTERNAL_HOSTNAME || defaultHostName;
@@ -93,7 +93,7 @@ module.exports = env => {
       headers: {
         "Access-Control-Allow-Origin": "*"
       },
-      before: function(app) {
+      before: function (app) {
         // be flexible with people accessing via a local reticulum on another port
         app.use(cors({ origin: /hubs\.local(:\d*)?$/ }));
       }
@@ -259,9 +259,9 @@ module.exports = env => {
         RETICULUM_SERVER: undefined,
         THUMBNAIL_SERVER: "",
         HUBS_SERVER: undefined,
-        CORS_PROXY_SERVER: null,
+        CORS_PROXY_SERVER: "localhost:4000",
         BASE_ASSETS_PATH: "",
-        NON_CORS_PROXY_DOMAINS: "",
+        NON_CORS_PROXY_DOMAINS: "localhost",
         ROUTER_BASE_PATH: "",
         SENTRY_DSN: null,
         GA_TRACKING_ID: null,
